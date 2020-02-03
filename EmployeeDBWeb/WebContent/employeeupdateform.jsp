@@ -7,7 +7,6 @@
 <meta charset="ISO-8859-1">
 <title>Employee Update</title>
 <link href="css/form.css" rel="stylesheet"/>
-
 </head>
 <body>
 <form method="post" action="employee?action=updateEmployee">
