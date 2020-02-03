@@ -4,7 +4,6 @@ import java.util.List;
 import com.yash.entities.Employees;
 /**
  * 
- * @author admin
  * Declaration of data operations for business Entity Employees
  *
  */
