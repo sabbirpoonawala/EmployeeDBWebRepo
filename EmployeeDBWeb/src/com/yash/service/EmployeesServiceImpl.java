@@ -16,8 +16,8 @@ import com.yash.model.EmployeesModel;
 import com.yash.model.JobsModel;
 import com.yash.model.ManagersModel;
 public class EmployeesServiceImpl implements EmployeesService {
-	private final String RESULTFORSUCCESS="success";
-	private final String RESULTFORFAILURE="fail";
+	private static final String RESULTFORSUCCESS="success";
+	private static final String RESULTFORFAILURE="fail";
 	
     static Logger log = Logger.getLogger(EmployeesServiceImpl.class.getName());
 	private EmployeesDAO employeesDAO;

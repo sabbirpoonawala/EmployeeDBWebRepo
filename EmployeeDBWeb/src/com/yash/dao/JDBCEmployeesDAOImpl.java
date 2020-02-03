@@ -21,7 +21,7 @@ public class JDBCEmployeesDAOImpl implements EmployeesDAO {
 	        BasicConfigurator.configure();
 	    }
 	
-	private final String EMPLOYEEID="employee_id";
+	private static final String EMPLOYEEID="employee_id";
 	@Override
 	public List<Employees> getAllEmployees() throws ClassNotFoundException, SQLException {
 		Connection connection=ConnectionManager.openConnection();
@@ -89,6 +89,7 @@ DEPARTMENT_ID           NUMBER(4)
  */
 	@Override
 	public boolean storeEmployeeDetails(Employees employees) throws ClassNotFoundException, SQLException {		
+		boolean ifEmployeeStored=false;
 		Connection connection=ConnectionManager.openConnection();
 		PreparedStatement statement=
 				connection.prepareStatement("insert into employees values(?,?,?,?,?,?,?,?,?,?,?)");
@@ -110,13 +111,13 @@ DEPARTMENT_ID           NUMBER(4)
 		int rows=statement.executeUpdate();
 		ConnectionManager.closeConnection();
 		if(rows>0) {
-			return true;}
-		else {
-		return false;}
+			ifEmployeeStored= true;}
+		return ifEmployeeStored;
 	}
 
 @Override
 public boolean updateEmployee(Employees employees) throws ClassNotFoundException, SQLException {
+	boolean ifEmployeeUpdated=false;
 	Connection connection=ConnectionManager.openConnection();
 	PreparedStatement statement=
 			connection.prepareStatement("update employees set email=?,phone_number=?,job_id=?,salary=?,commission_pct=?,manager_id=?,department_id=? where employee_id=?");
@@ -131,13 +132,13 @@ public boolean updateEmployee(Employees employees) throws ClassNotFoundException
 	int rows=statement.executeUpdate();
 	ConnectionManager.closeConnection();
 	if(rows>0) {
-		return true;}
-	else {
-	return false;}
+		ifEmployeeUpdated=true;}
+    return ifEmployeeUpdated;
 }
 
 @Override
 public boolean deleteEmployeeDetails(Employees employees) throws ClassNotFoundException, SQLException {
+	boolean ifEmployeeDeleted=false;
 	Connection connection=ConnectionManager.openConnection();
 	PreparedStatement statement=
 			connection.prepareStatement("delete from employees where employee_id=?");
@@ -145,9 +146,8 @@ public boolean deleteEmployeeDetails(Employees employees) throws ClassNotFoundEx
 	int rows=statement.executeUpdate();
 	ConnectionManager.closeConnection();
 	if(rows>0) {
-		return true;}
-	else {
-	return false;}
+		ifEmployeeDeleted= true;}
+   return ifEmployeeDeleted;
 }
 
 @Override

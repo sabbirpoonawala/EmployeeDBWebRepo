@@ -30,7 +30,7 @@ public class DepartmentsServiceImpl implements DepartmentsService {
 				departmentsModelList.add(departmentsModel);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			System.err.println("!ERROR[Retrieval of Departments failed!!!]");
+			log.error("!ERROR[Retrieval of Departments failed!!!]");
 		}
 		return departmentsModelList;
 	}
