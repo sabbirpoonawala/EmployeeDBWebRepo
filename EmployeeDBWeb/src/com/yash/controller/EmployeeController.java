@@ -1,4 +1,5 @@
 package com.yash.controller;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -78,7 +79,6 @@ public class EmployeeController extends HttpServlet {
 			}catch(NullPointerException e) {
 				response.sendRedirect(ERROR_PAGE);
 				log.error(e);
-
 			}
 		}else {
 			RequestDispatcher dispatcher=
@@ -92,7 +92,7 @@ public class EmployeeController extends HttpServlet {
 				}		}
 		}
 		if(action.contentEquals("loadform")) {
-		     loadForm(request,response);
+		       loadForm(request,response);
 			}
            if(action.contentEquals("viewEmployee")) {
         	   viewEmployee(request,response);
@@ -127,7 +127,6 @@ public class EmployeeController extends HttpServlet {
 			}catch(NullPointerException e) {
 				response.sendRedirect(ERROR_PAGE);
 				log.error("Failed to delegate");
-
 			}
     }
 
@@ -137,19 +136,42 @@ public class EmployeeController extends HttpServlet {
     @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		log.info("HTTP POST REQUEST");
-
-    	String action=request.getParameter("action");
+        String action=request.getParameter("action");
+        
         if(action.contentEquals("newEmployee")) {
-        newEmployee(request,response);
+    		log.info("HTTP POST REQUEST for new employee");
+        	try {
+            newEmployee(request,response);
+        	}catch(Exception e) {
+        		response.sendRedirect(ERROR_PAGE);
+        	}
         }
         if(action.contentEquals("updateEmployeeForm")) {
-        	updateEmployeeForm(request,response);
+    		log.info("HTTP POST REQUEST for update employee form");
+
+        	try {
+            	updateEmployeeForm(request,response);
+            	}catch(Exception e) {
+            		response.sendRedirect(ERROR_PAGE);
+            	}
         }
         if(action.contentEquals("updateEmployee")) {
-        	updateEmployee(request,response);	
+    		log.info("HTTP POST REQUEST for update employee");
+
+        	try {
+            	updateEmployee(request,response);
+            	}catch(Exception e) {
+            		response.sendRedirect(ERROR_PAGE);
+            	}
         }
         if(action.contentEquals("deleteEmployee")) {
-        	deleteEmployee(request,response);
+    		log.info("HTTP POST REQUEST for delete employee");
+
+        	try {
+            	deleteEmployee(request,response);
+            	}catch(Exception e) {
+            		response.sendRedirect(ERROR_PAGE);
+            	}
         }
 	}
     protected void newEmployee(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
@@ -166,10 +188,12 @@ public class EmployeeController extends HttpServlet {
     	String hireDateReq=request.getParameter("hireDate");
     	LocalDate hireDate=DateConverter.convertLocaleDate(hireDateReq, "-");
     	String jobId=request.getParameter("jobId");
+    	
     	double salary=0.0;
     	double commissionPCT=0.0;
     	int managerId=0;
     	int departmentId=0;
+    	
     	try {
         salary=Double.parseDouble(request.getParameter("salary"));
         commissionPCT=Double.parseDouble(request.getParameter("commissionPCT"));
@@ -257,10 +281,9 @@ public class EmployeeController extends HttpServlet {
     					log.error(e);
 
     			    }        		
-       		}	
+       		}
     	}
     }
-    
     protected void updateEmployeeForm(HttpServletRequest request,HttpServletResponse response) throws ServletException,IOException{
     	int employeeId=0;
     	try {
@@ -306,10 +329,12 @@ public class EmployeeController extends HttpServlet {
     	String email=request.getParameter("email");
     	String phoneNumber=request.getParameter("phoneNumber");
     	String jobId=request.getParameter("jobId");
-     	double salary=0.0;
+     	
+    	double salary=0.0;
     	double commissionPCT=0.0;
     	int managerId=0;
     	int departmentId=0;
+    	
     	try {
         salary=Double.parseDouble(request.getParameter("salary"));
         commissionPCT=Double.parseDouble(request.getParameter("commissionPCT"));
@@ -320,8 +345,7 @@ public class EmployeeController extends HttpServlet {
 			log.error(e);
 
     	}
-        String hireDateReq=request.getParameter("hireDate");
-    	
+    	String hireDateReq=request.getParameter("hireDate");
     	LocalDate hireDate=DateConverter.convertLocaleDate(hireDateReq, "-");
     	AllEmployeesModel employeesModel=new AllEmployeesModel();
 		employeesModel.setEmployeeId(employeeId);
@@ -336,6 +360,7 @@ public class EmployeeController extends HttpServlet {
 		employeesModel.setDepartmentId(departmentId);
 		employeesModel.setManagerId(managerId);	
 		String outcome=employeeService.updateEmployee(employeesModel);
+		
 		if(outcome.contentEquals(SUCCESS)) {
 			 RequestDispatcher dispatcher=
 	    				request.getRequestDispatcher(EMPLOYEE_SUCCESS_PAGE);
@@ -357,8 +382,7 @@ public class EmployeeController extends HttpServlet {
 				log.error(e);
 			}   
 			}
-
-    }
+}
     protected void deleteEmployee(HttpServletRequest request,HttpServletResponse response)throws ServletException,IOException{
     	int employeeId=0;
     	try {
@@ -386,7 +410,6 @@ public class EmployeeController extends HttpServlet {
 				}catch(NullPointerException e) {
 					response.sendRedirect(ERROR_PAGE);
 					log.error(e);
-
 				}      		}else {
   			 RequestDispatcher dispatcher=
   	    				request.getRequestDispatcher(EMPLOYEE_FAIL_PAGE);
