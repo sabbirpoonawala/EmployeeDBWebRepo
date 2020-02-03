@@ -9,10 +9,8 @@ import java.sql.Types;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-
 import com.yash.entities.Departments;
 import com.yash.entities.Employees;
 import com.yash.integrate.ConnectionManager;

@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 
 import com.yash.entities.Departments;
 import com.yash.integrate.ConnectionManager;
-import com.yash.service.DepartmentsServiceImpl;
 
 public class JDBCDepartmentsDAOImpl implements DepartmentsDAO {
 
