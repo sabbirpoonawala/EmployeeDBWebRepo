@@ -2,14 +2,13 @@ package com.yash.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-
 import com.yash.dao.JobsDAO;
 import com.yash.entities.Jobs;
 import com.yash.helper.FactoryEmployeeDB;
 import com.yash.model.JobsModel;
+
 public class JobsServiceImpl implements JobsService {
     static Logger log = Logger.getLogger(JobsServiceImpl.class.getName());
 

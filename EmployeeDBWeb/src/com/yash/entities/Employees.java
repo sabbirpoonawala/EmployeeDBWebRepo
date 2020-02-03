@@ -1,8 +1,6 @@
 package com.yash.entities;
 import java.time.LocalDate;
-/**
- * 
- * @author admin
+/** 
  * Business Entity, a logical data model representing
  * database table employees
  * -------------- -------- ------------ 

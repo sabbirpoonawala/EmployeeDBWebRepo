@@ -2,11 +2,8 @@ package com.yash.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
-
-import com.yash.controller.EmployeeController;
 import com.yash.dao.EmployeesDAO;
 import com.yash.entities.Departments;
 import com.yash.entities.Employees;
