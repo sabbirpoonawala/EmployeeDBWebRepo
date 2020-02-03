@@ -27,6 +27,7 @@ import com.yash.validation.EmployeesModelValidator;
  * Servlet implementation class EmployeeController
  */
 @WebServlet("/employee")
+
 public class EmployeeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -68,9 +69,11 @@ public class EmployeeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	log.info("HTTP GET REQUEST");
     	String action=request.getParameter("action");
-		if(action.contentEquals("view")) {
+		
+    	if(action.contentEquals("view")) {
 		List<EmployeesModel> employeesModelList=employeeService.retrieveEmployees();
 		request.setAttribute("employeesModelList", employeesModelList);
+		
 		if(!employeesModelList.isEmpty()) {	
 			RequestDispatcher dispatcher=
 					request.getRequestDispatcher("employeedetails.jsp");
@@ -257,7 +260,7 @@ public class EmployeeController extends HttpServlet {
     		employeesModel.setCommissionPCT(commissionPCT);
     		employeesModel.setDepartmentId(departmentId);
     		employeesModel.setManagerId(managerId);
-    		String outcome=employeeService.registerEmployee(employeesModel);
+    	    String outcome=employeeService.registerEmployee(employeesModel);
     		
     		if(outcome.contentEquals(SUCCESS)) {
     			 RequestDispatcher dispatcher=
