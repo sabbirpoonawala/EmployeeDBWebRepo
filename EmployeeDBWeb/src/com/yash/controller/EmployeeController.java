@@ -67,6 +67,9 @@ public class EmployeeController extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	/*
+    	 * ashu made changes in code
+    	 */
     	log.info("HTTP GET REQUEST");
     	String action=request.getParameter("action");
 		
